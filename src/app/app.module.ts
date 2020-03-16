@@ -5,10 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ProductSearchComponent } from './product-search/product-search.component';
+import { PortfolioViewComponent } from './portfolio-view/portfolio-view.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProductSearchComponent,
+    PortfolioViewComponent
   ],
   imports: [
     BrowserModule,
