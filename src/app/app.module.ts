@@ -5,19 +5,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { ProductSearchComponent } from './product-search/product-search.component';
-import { PortfolioViewComponent } from './portfolio-view/portfolio-view.component';
+import { ProductSearchComponent } from './components/product-search/product-search.component';
+import { PortfolioViewComponent } from './components/portfolio-view/portfolio-view.component';
+import { RiskAnalyseComponent } from './components/risk-analyse/risk-analyse.component';
+
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductSearchComponent,
-    PortfolioViewComponent
+    PortfolioViewComponent,
+    RiskAnalyseComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
