@@ -1,1 +1,38 @@
-<p>risk-analyse works!</p>
+<div class="risk-analyse">
+  <form [formGroup]="formGroup">
+    <br>
+    <br>
+    <mat-label>Risikobereitschaft</mat-label>
+    <br>
+    <mat-radio-group [value]="riskTolerance">
+      <mat-radio-button value="NO_RISK">Ich gehe ungerne Risiken ein</mat-radio-button>
+      <br>
+      <mat-radio-button value="LOW_RISK">Ich gehe leichte Risiken ein</mat-radio-button>
+      <br>
+      <mat-radio-button value="MID_RISK">Ich gehe Risiken ein</mat-radio-button>
+      <br>
+      <mat-radio-button value="HIGH_RISK">Das Risiko spielt für mich keine Rolle</mat-radio-button>
+      <br>
+    </mat-radio-group>
+    <br>
+    <mat-label>Angestrebte Rendite</mat-label>
+    <br>
+    <mat-radio-group [value]="expectedYield">
+      <mat-radio-button value="OUTSTRIPPING_INTEREST">Ich möchte Zinsen übertreffen</mat-radio-button>
+      <br>
+      <mat-radio-button value="OUTSTRIPPING_INFLATION">Ich möchte die Inflation übertreffen</mat-radio-button>
+      <br>
+      <mat-radio-button value="BALANCED_YIELD">Ich möchte eine gute Rendite erzielen</mat-radio-button>
+      <br>
+      <mat-radio-button value="YIELD_FIRST">Mir ist die Rendite am wichtigsten</mat-radio-button>
+      <br>
+    </mat-radio-group>
+    <br>
+    <mat-form-field>
+      <mat-label>Laufzeit in Jahren</mat-label>
+      <br>
+      <input matInput type="text" formControlName="duration" placeholder="3"><br>
+    </mat-form-field>
+    <button mat-button (click)="submitRiskProfile()">Weiter</button>
+  </form>
+</div>
