@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ExpectedYield} from '../../models/expected-yield.enum';
 import {RiskTolerance} from '../../models/risk-tolerance.enum';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {RestService} from '../../services/rest.service';
-import {Product} from '../../models/product.model';
+import {RiskProfile} from '../../models/risk-profile';
 
 @Component({
   selector: 'app-risk-analyse',
@@ -12,55 +12,70 @@ import {Product} from '../../models/product.model';
 })
 export class RiskAnalyseComponent implements OnInit {
 
-  public formGroup: FormGroup;
+  form = new FormGroup({
+    duration: new FormControl('', [Validators.required, Validators.min(1)])
+  });
   public expectedYield: ExpectedYield;
   public riskTolerance: RiskTolerance;
   public duration: number;
-
-  products: [Product];
 
   constructor(
     private readonly fb: FormBuilder,
     private readonly restService: RestService
   ) {
-  }
-
-  ngOnInit() {
-    this.formGroup = this.getDataFormGroup(this.duration);
-    this.riskTolerance = RiskTolerance.NO_RISK;
-    this.expectedYield = ExpectedYield.OUTSTRIPPING_INTEREST;
+    this.riskTolerance = RiskTolerance.LOW_RISK;
+    this.expectedYield = ExpectedYield.OUTSTRIPPING_INFLATION;
     this.duration = null;
   }
 
-  public getDataFormGroup(durationParameter: number) {
-    return this.fb.group({
-      duration: [durationParameter, [
-        /*Validator*/
-      ]]
-    });
+  ngOnInit() {
+
+  }
+
+  get f() {
+    return this.form.controls;
+  }
+
+  public changeRiskToleranceLow() {
+    this.riskTolerance = RiskTolerance.LOW_RISK;
+  }
+
+  public changeRiskToleranceMid() {
+    this.riskTolerance = RiskTolerance.MID_RISK;
+  }
+
+  public changeRiskToleranceHigh() {
+    this.riskTolerance = RiskTolerance.HIGH_RISK;
+  }
+
+  public changeExpectedYieldLow() {
+    this.expectedYield = ExpectedYield.OUTSTRIPPING_INFLATION;
+  }
+
+  public changeExpectedYieldMid() {
+    this.expectedYield = ExpectedYield.BALANCED_YIELD;
+  }
+
+  public changeExpectedYieldHigh() {
+    this.expectedYield = ExpectedYield.YIELD_FIRST;
+  }
+
+  public changeDuration() {
+    this.duration = this.form.value.duration;
   }
 
   public submitRiskProfile() {
     console.log(this.riskTolerance);
+    console.log(this.expectedYield);
     console.log(this.duration);
-    // this.restService.uploadRiskProfile(riskProfile);
-    // const riskProfile: RiskProfile = new RiskProfile(this.riskTolerance.toString(), this.expectedYield.toString(), this.duration)
 
-    this.restService.getProducts()
-      .subscribe(data => {
-        for (const d of (data as any)) {
-          this.products.push({
-            id: d.id,
-            isin: d.isin,
-            name: d.name,
-            productType: d.productType.type,
-            region: d.region.name,
-            indexLevel: d.indexLevel,
-            performanceTotal: d.performanceTotal,
-            performanceThisYear: d.performanceThisYear
-          });
-        }
-        console.log(this.products);
-      });
+    const riskProfile: RiskProfile = new RiskProfile(this.riskTolerance, this.expectedYield, this.duration);
+
+    // TODO
+    this.restService.sendRiskProfile(riskProfile).subscribe(
+      res => {
+        console.log(res);
+      }
+    );
   }
 }

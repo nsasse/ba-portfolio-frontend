@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {RestService} from '../../services/rest.service';
-import {Product} from '../../models/product.model';
 
 @Component({
   selector: 'app-product-search',
@@ -9,7 +8,7 @@ import {Product} from '../../models/product.model';
 })
 export class ProductSearchComponent implements OnInit {
 
-  products: [Product];
+  products: any = [];
 
   constructor(private readonly restService: RestService) {
 

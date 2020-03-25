@@ -8,7 +8,7 @@ import {ProductSearchComponent} from './components/product-search/product-search
 import {PortfolioViewComponent} from './components/portfolio-view/portfolio-view.component';
 import {RiskAnalyseComponent} from './components/risk-analyse/risk-analyse.component';
 
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientJsonpModule, HttpClientModule} from '@angular/common/http';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -28,6 +28,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    HttpClientJsonpModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatRadioModule,
