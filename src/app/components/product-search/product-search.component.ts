@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {RestService} from '../../services/rest.service';
+import {Product} from '../../models/product.model';
 
 @Component({
   selector: 'app-product-search',
@@ -7,9 +9,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductSearchComponent implements OnInit {
 
-  constructor() { }
+  products: [Product];
+
+  constructor(private readonly restService: RestService) {
+
+  }
 
   ngOnInit(): void {
   }
 
+
+  public getProducts() {
+
+    this.restService.getProducts()
+      .subscribe(data => {
+        for (const d of (data as any)) {
+          this.products.push({
+            id: d.id,
+            isin: d.isin,
+            name: d.name,
+            productType: d.productType,
+            region: d.region,
+            indexLevel: d.indexLevel,
+            performanceTotal: d.performanceTotal,
+            performanceThisYear: d.performanceThisYear
+          });
+        }
+        console.log(this.products);
+      });
+
+  }
 }

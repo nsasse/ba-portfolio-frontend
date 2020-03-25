@@ -2,9 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ExpectedYield} from '../../models/expected-yield.enum';
 import {RiskTolerance} from '../../models/risk-tolerance.enum';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {RiskService} from '../../services/risk.service';
-import {RiskProfile} from '../../models/risk-profile';
-
+import {RestService} from '../../services/rest.service';
+import {Product} from '../../models/product.model';
 
 @Component({
   selector: 'app-risk-analyse',
@@ -18,9 +17,11 @@ export class RiskAnalyseComponent implements OnInit {
   public riskTolerance: RiskTolerance;
   public duration: number;
 
+  products: [Product];
+
   constructor(
     private readonly fb: FormBuilder,
-    private readonly riskService: RiskService
+    private readonly restService: RestService
   ) {
   }
 
@@ -42,7 +43,24 @@ export class RiskAnalyseComponent implements OnInit {
   public submitRiskProfile() {
     console.log(this.riskTolerance);
     console.log(this.duration);
-    const riskProfile: RiskProfile = new RiskProfile(this.riskTolerance.toString(), this.expectedYield.toString(), this.duration)
-    this.riskService.uploadRiskProfile(riskProfile);
+    // this.restService.uploadRiskProfile(riskProfile);
+    // const riskProfile: RiskProfile = new RiskProfile(this.riskTolerance.toString(), this.expectedYield.toString(), this.duration)
+
+    this.restService.getProducts()
+      .subscribe(data => {
+        for (const d of (data as any)) {
+          this.products.push({
+            id: d.id,
+            isin: d.isin,
+            name: d.name,
+            productType: d.productType.type,
+            region: d.region.name,
+            indexLevel: d.indexLevel,
+            performanceTotal: d.performanceTotal,
+            performanceThisYear: d.performanceThisYear
+          });
+        }
+        console.log(this.products);
+      });
   }
 }
