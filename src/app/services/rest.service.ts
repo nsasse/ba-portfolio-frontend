@@ -23,8 +23,7 @@ export class RestService {
 
   public sendRiskProfile(riskProfile: RiskProfile): Observable<any> {
     // console.log(JSON.stringify(riskProfile));
-    const test = 'testing';
-    return this.http.post<any>('http://localhost:8082/portfolio/riskprofile', test);
+    return this.http.post<any>('http://localhost:8082/portfolio/riskprofile', riskProfile);
   }
 }
 
