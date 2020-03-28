@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ExpectedYield} from '../../models/expected-yield.enum';
 import {RiskTolerance} from '../../models/risk-tolerance.enum';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
@@ -11,6 +11,9 @@ import {RiskProfile} from '../../models/risk-profile';
   styleUrls: ['./risk-analyse.component.scss'],
 })
 export class RiskAnalyseComponent implements OnInit {
+
+  @Output()
+  uploaded = new EventEmitter<string>();
 
   form = new FormGroup({
     duration: new FormControl('', [Validators.required, Validators.min(1)])
@@ -65,17 +68,14 @@ export class RiskAnalyseComponent implements OnInit {
   }
 
   public submitRiskProfile() {
-    console.log(this.riskTolerance);
-    console.log(this.expectedYield);
-    console.log(this.duration);
-
     const riskProfile: RiskProfile = new RiskProfile(this.riskTolerance, this.expectedYield, this.duration);
 
-    // TODO
     this.restService.sendRiskProfile(riskProfile).subscribe(
       res => {
         console.log(res);
       }
     );
+
+    this.uploaded.emit('complete');
   }
 }

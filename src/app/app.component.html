@@ -39,7 +39,8 @@
   </div>
 
   <!--APP RISK ANALYSE-->
-  <app-risk-analyse></app-risk-analyse>
+  <app-risk-analyse *ngIf="viewRiskAnalyse"></app-risk-analyse>
+  <app-product-search *ngIf="viewPortfolioView"></app-product-search>
 
   <!-- Footer -->
   <footer>
