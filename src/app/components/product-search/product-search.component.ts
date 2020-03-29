@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {RestService} from '../../services/rest.service';
+import {FormControl, FormGroup} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-search',
@@ -8,15 +11,43 @@ import {RestService} from '../../services/rest.service';
 })
 export class ProductSearchComponent implements OnInit {
 
-  products: any = [];
+  products: any[] = [];
+  productNames: string[] = [];
+  filteredOptions: Observable<string[]>;
+
+  form = new FormGroup({
+    search: new FormControl('')
+  });
 
   constructor(private readonly restService: RestService) {
-
+    this.getProductNamesForSearch();
   }
 
   ngOnInit(): void {
+    this.filteredOptions = this.form.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
   }
 
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.productNames.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
+
+  public getProductNamesForSearch() {
+
+    this.restService.getAllProductsForSearch()
+      .subscribe(data => {
+        for (const p of (data as string)) {
+          this.productNames.push();
+        }
+        console.log(this.productNames);
+      });
+
+  }
 
   public getProducts() {
 
@@ -36,6 +67,5 @@ export class ProductSearchComponent implements OnInit {
         }
         console.log(this.products);
       });
-
   }
 }

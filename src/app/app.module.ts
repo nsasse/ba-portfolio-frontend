@@ -15,7 +15,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import {MatOptionModule} from '@angular/material/core';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -34,6 +37,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MatRadioModule,
     MatInputModule,
     MatButtonModule,
+    MatAutocompleteModule,
+    MatOptionModule,
     ReactiveFormsModule,
     FormsModule
   ],

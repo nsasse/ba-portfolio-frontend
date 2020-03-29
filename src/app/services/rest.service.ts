@@ -13,8 +13,8 @@ export class RestService {
   constructor(private http: HttpClient) {
   }
 
-  public sendSearchString(searchString: string) {
-    return this.http.post('http://localhost:8082/product/search', searchString);
+  public getAllProductsForSearch(): Observable<any> {
+    return this.http.get('http://localhost:8082/product/all/string');
   }
 
   public getProducts() {
@@ -26,4 +26,3 @@ export class RestService {
     return this.http.post<any>('http://localhost:8082/portfolio/riskprofile', riskProfile);
   }
 }
-
