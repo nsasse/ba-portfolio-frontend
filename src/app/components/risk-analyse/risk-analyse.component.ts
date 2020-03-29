@@ -12,15 +12,14 @@ import {RiskProfile} from '../../models/risk-profile';
 })
 export class RiskAnalyseComponent implements OnInit {
 
-  @Output()
-  uploaded = new EventEmitter<string>();
-
   form = new FormGroup({
     duration: new FormControl('', [Validators.required, Validators.min(1)])
   });
   public expectedYield: ExpectedYield;
   public riskTolerance: RiskTolerance;
   public duration: number;
+
+  @Output() riskProfileUploaded = new EventEmitter();
 
   constructor(
     private readonly fb: FormBuilder,
@@ -72,10 +71,9 @@ export class RiskAnalyseComponent implements OnInit {
 
     this.restService.sendRiskProfile(riskProfile).subscribe(
       res => {
-        console.log(res);
+        console.log(riskProfile);
       }
     );
-
-    this.uploaded.emit('complete');
+    this.riskProfileUploaded.emit('uploaded');
   }
 }

@@ -39,7 +39,7 @@
   </div>
 
   <!--APP RISK ANALYSE-->
-  <app-risk-analyse *ngIf="viewRiskAnalyse"></app-risk-analyse>
+  <app-risk-analyse (riskProfileUploaded)="riskProfileFinished()" *ngIf="viewRiskAnalyse"></app-risk-analyse>
   <app-product-search *ngIf="viewPortfolioView"></app-product-search>
 
   <!-- Footer -->
