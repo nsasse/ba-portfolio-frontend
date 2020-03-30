@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {RestService} from '../../services/rest.service';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
@@ -10,6 +10,8 @@ import {map, startWith} from 'rxjs/operators';
   styleUrls: ['./product-search.component.scss']
 })
 export class ProductSearchComponent implements OnInit {
+
+  @Output() productSelected = new EventEmitter<string>();
 
   productNames: string[] = [''];
   filteredOptions: Observable<string[]>;
@@ -32,6 +34,9 @@ export class ProductSearchComponent implements OnInit {
     return this.productNames.filter(option => option.toLowerCase().includes(filterValue));
   }
 
+  public productSelectedForView() {
+    this.productSelected.emit(this.formControl.value);
+  }
 
   public getProductNamesForSearch() {
     this.restService.getAllProductsForSearch()

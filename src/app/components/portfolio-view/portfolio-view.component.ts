@@ -13,8 +13,6 @@ export class PortfolioViewComponent implements OnInit {
 
   constructor(private readonly restService: RestService) {
     this.productForView = new Product(null, '', '', '', '', 0, 0, 0);
-    this.getProductByName('iShares J. P. Morgan $ EM Bond EUR Hedged UCITS ETF');
-    console.log(this.productForView);
   }
 
   ngOnInit(): void {
@@ -22,6 +20,7 @@ export class PortfolioViewComponent implements OnInit {
 
 
   public getProductByName(productName: string) {
+    console.log(productName);
     this.restService.getProductByName(productName)
       .subscribe(data => {
         this.productForView.id = data.id;
@@ -33,6 +32,7 @@ export class PortfolioViewComponent implements OnInit {
         this.productForView.performanceTotal = data.performanceTotal;
         this.productForView.performanceThisYear = data.performanceThisYear;
       });
+    console.log(this.productForView);
   }
 
 }
