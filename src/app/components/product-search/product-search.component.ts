@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {RestService} from '../../services/rest.service';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 
@@ -11,22 +11,18 @@ import {map, startWith} from 'rxjs/operators';
 })
 export class ProductSearchComponent implements OnInit {
 
-  products: any[] = [];
-  productNames: string[] = [];
+  productNames: string[] = [''];
   filteredOptions: Observable<string[]>;
-
-  form = new FormGroup({
-    search: new FormControl('')
-  });
+  formControl = new FormControl();
 
   constructor(private readonly restService: RestService) {
     this.getProductNamesForSearch();
   }
 
   ngOnInit(): void {
-    this.filteredOptions = this.form.valueChanges
+    this.filteredOptions = this.formControl.valueChanges
       .pipe(
-        startWith(''),
+        startWith('Suchen...'),
         map(value => this._filter(value))
       );
   }
@@ -38,34 +34,30 @@ export class ProductSearchComponent implements OnInit {
 
 
   public getProductNamesForSearch() {
-
     this.restService.getAllProductsForSearch()
       .subscribe(data => {
-        for (const p of (data as string)) {
-          this.productNames.push();
-        }
-        console.log(this.productNames);
-      });
-
-  }
-
-  public getProducts() {
-
-    this.restService.getProducts()
-      .subscribe(data => {
-        for (const d of (data as any)) {
-          this.products.push({
-            id: d.id,
-            isin: d.isin,
-            name: d.name,
-            productType: d.productType,
-            region: d.region,
-            indexLevel: d.indexLevel,
-            performanceTotal: d.performanceTotal,
-            performanceThisYear: d.performanceThisYear
-          });
-        }
-        console.log(this.products);
+        this.productNames = data;
       });
   }
+
+  // TEST
+  // public getProducts() {
+  //
+  //   this.restService.getProducts()
+  //     .subscribe(data => {
+  //       for (const d of (data as any)) {
+  //         this.products.push({
+  //           id: d.id,
+  //           isin: d.isin,
+  //           name: d.name,
+  //           productType: d.productType,
+  //           region: d.region,
+  //           indexLevel: d.indexLevel,
+  //           performanceTotal: d.performanceTotal,
+  //           performanceThisYear: d.performanceThisYear
+  //         });
+  //       }
+  //       console.log(this.products);
+  //     });
+  // }
 }

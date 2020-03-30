@@ -17,12 +17,11 @@ export class RestService {
     return this.http.get('http://localhost:8082/product/all/string');
   }
 
-  public getProducts() {
+  public getProducts(): Observable<any> {
     return this.http.get('http://localhost:8082/product/all');
   }
 
   public sendRiskProfile(riskProfile: RiskProfile): Observable<any> {
-    // console.log(JSON.stringify(riskProfile));
     return this.http.post<any>('http://localhost:8082/portfolio/riskprofile', riskProfile);
   }
 }
