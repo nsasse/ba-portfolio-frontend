@@ -24,4 +24,10 @@ export class RestService {
   public sendRiskProfile(riskProfile: RiskProfile): Observable<any> {
     return this.http.post<any>('http://localhost:8082/portfolio/riskprofile', riskProfile);
   }
+
+  public getProductByName(productName: string): Observable<any> {
+    return this.http.get('http://localhost:8082/product/by/name', {
+      params: {search: productName}
+    });
+  }
 }
