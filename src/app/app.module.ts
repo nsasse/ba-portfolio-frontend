@@ -7,17 +7,21 @@ import {AppComponent} from './app.component';
 import {ProductSearchComponent} from './components/product-search/product-search.component';
 import {PortfolioViewComponent} from './components/portfolio-view/portfolio-view.component';
 import {RiskAnalyseComponent} from './components/risk-analyse/risk-analyse.component';
+import {PortfolioDetailsComponent} from './components/portfolio-details/portfolio-details.component';
+import {DataService} from './services/data.service';
 
 import {HttpClientJsonpModule, HttpClientModule} from '@angular/common/http';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ChartsModule} from 'ng2-charts';
+
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatOptionModule} from '@angular/material/core';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -25,7 +29,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     AppComponent,
     ProductSearchComponent,
     PortfolioViewComponent,
-    RiskAnalyseComponent
+    RiskAnalyseComponent,
+    PortfolioDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -40,13 +45,17 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MatAutocompleteModule,
     MatOptionModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ChartsModule
   ],
-  providers: [],
+  providers: [
+    DataService
+  ],
   bootstrap: [AppComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
     NO_ERRORS_SCHEMA
   ]
 })
-export class AppModule { }
+export class AppModule {
+}

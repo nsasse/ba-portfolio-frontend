@@ -4,4 +4,25 @@
   <br>
   <app-product-search (productSelected)="getProductByName($event)"></app-product-search>
   <br>
+  <div class="productView">
+    <mat-label>Name: {{productForView.name}}</mat-label>
+    <br>
+    <mat-label>ISIN: {{productForView.isin}}</mat-label>
+    <br>
+    <mat-label>Produkttyp: {{productForView.productType}}</mat-label>
+    <br>
+    <mat-label>Region: {{productForView.region}}</mat-label>
+    <br>
+    <mat-label>Index Level: {{productForView.indexLevel}}</mat-label>
+    <br>
+    <mat-label>Performance gesamt: {{productForView.performanceTotal}}</mat-label>
+    <br>
+    <mat-label>Performance seit Jahresbeginn: {{productForView.performanceThisYear}}</mat-label>
+    <br>
+    <br>
+    <button mat-button (click)="addProductToPortfolio()">Hinzufügen</button>
+    <br>
+    <br>
+    <app-portfolio-details></app-portfolio-details>
+  </div>
 </div>

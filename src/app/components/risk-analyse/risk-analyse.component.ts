@@ -4,6 +4,8 @@ import {RiskTolerance} from '../../models/risk-tolerance.enum';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {RestService} from '../../services/rest.service';
 import {RiskProfile} from '../../models/risk-profile';
+import {PortfolioWeighting} from '../../models/portfolioweighting.enum';
+import {DataService} from "../../services/data.service";
 
 @Component({
   selector: 'app-risk-analyse',
@@ -18,12 +20,14 @@ export class RiskAnalyseComponent implements OnInit {
   public expectedYield: ExpectedYield;
   public riskTolerance: RiskTolerance;
   public duration: number;
+  public portfolioWeightingData: string;
 
-  @Output() riskProfileUploaded = new EventEmitter();
+  @Output() riskProfileUploaded = new EventEmitter<PortfolioWeighting>();
 
   constructor(
     private readonly fb: FormBuilder,
-    private readonly restService: RestService
+    private readonly restService: RestService,
+    private dataService: DataService
   ) {
     this.riskTolerance = RiskTolerance.LOW_RISK;
     this.expectedYield = ExpectedYield.OUTSTRIPPING_INFLATION;
@@ -31,7 +35,6 @@ export class RiskAnalyseComponent implements OnInit {
   }
 
   ngOnInit() {
-
   }
 
   get f() {
@@ -66,14 +69,19 @@ export class RiskAnalyseComponent implements OnInit {
     this.duration = this.form.value.duration;
   }
 
+  // TODO
   public submitRiskProfile() {
     const riskProfile: RiskProfile = new RiskProfile(this.riskTolerance, this.expectedYield, this.duration);
 
     this.restService.sendRiskProfile(riskProfile).subscribe(
-      res => {
-        console.log(riskProfile);
-      }
-    );
-    this.riskProfileUploaded.emit('uploaded');
+      data => {
+        console.log('Data: ' + data);
+        this.portfolioWeightingData = data;
+      });
+    // if (this.portfolioWeightingData.match(PortfolioWeighting.ADVISOR_75)) {
+    this.dataService.portfolioWeighting = PortfolioWeighting.ADVISOR_25;
+    // }
+    console.log('Object: ' + this.dataService.portfolioWeighting);
+    this.riskProfileUploaded.emit(this.dataService.portfolioWeighting);
   }
 }
