@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {RestService} from '../../services/rest.service';
 import {Product} from '../../models/product.model';
-import {PortfolioDetailsComponent} from '../portfolio-details/portfolio-details.component';
+import {PortfolioListComponent} from '../../portfolio-list/portfolio-list.component';
 
 @Component({
   selector: 'app-portfolio-view',
@@ -10,7 +10,7 @@ import {PortfolioDetailsComponent} from '../portfolio-details/portfolio-details.
 })
 export class PortfolioViewComponent implements OnInit {
 
-  @ViewChild(PortfolioDetailsComponent) portfolioDetailsComponent: PortfolioDetailsComponent;
+  @ViewChild(PortfolioListComponent) portfolioListComponent: PortfolioListComponent;
 
   productForView: Product;
 
@@ -38,7 +38,6 @@ export class PortfolioViewComponent implements OnInit {
   }
 
   public addProductToPortfolio() {
-    this.portfolioDetailsComponent.addProductToPortfolio(this.productForView);
+    this.portfolioListComponent.addProductToPortfolio(this.productForView);
   }
-
 }

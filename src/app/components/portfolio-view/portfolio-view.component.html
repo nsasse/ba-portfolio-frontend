@@ -1,7 +1,4 @@
-<div class="risk-analyse">
-  <br>
-  <p> PortfolioView works</p>
-  <br>
+<div class="portfolio-view">
   <app-product-search (productSelected)="getProductByName($event)"></app-product-search>
   <br>
   <div class="productView">
@@ -20,9 +17,10 @@
     <mat-label>Performance seit Jahresbeginn: {{productForView.performanceThisYear}}</mat-label>
     <br>
     <br>
-    <button mat-button (click)="addProductToPortfolio()">Hinzufügen</button>
+    <button mat-button (click)="addProductToPortfolio()">Product hinzufügen</button>
     <br>
     <br>
     <app-portfolio-details></app-portfolio-details>
+    <app-portfolio-list></app-portfolio-list>
   </div>
 </div>

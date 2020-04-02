@@ -1,0 +1,10 @@
+<div class="portfolio-list">
+  <mat-list id="commodity-list" *ngIf="commodityListVisible">
+    <mat-list-item *ngFor="let product of commodityList">
+      <span><h3> {{product.name}} </h3></span>
+      <span><p> {{product.region}} </p></span>
+      <p>Betrag in Euro</p>
+      <p class="demo-2">Delete Button</p>
+    </mat-list-item>
+  </mat-list>
+</div>

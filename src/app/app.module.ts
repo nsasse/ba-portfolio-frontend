@@ -8,6 +8,8 @@ import {ProductSearchComponent} from './components/product-search/product-search
 import {PortfolioViewComponent} from './components/portfolio-view/portfolio-view.component';
 import {RiskAnalyseComponent} from './components/risk-analyse/risk-analyse.component';
 import {PortfolioDetailsComponent} from './components/portfolio-details/portfolio-details.component';
+import {PortfolioListComponent} from './portfolio-list/portfolio-list.component';
+
 import {DataService} from './services/data.service';
 
 import {HttpClientJsonpModule, HttpClientModule} from '@angular/common/http';
@@ -22,6 +24,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatOptionModule} from '@angular/material/core';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatListModule} from '@angular/material/list';
 
 
 @NgModule({
@@ -30,7 +33,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     ProductSearchComponent,
     PortfolioViewComponent,
     RiskAnalyseComponent,
-    PortfolioDetailsComponent
+    PortfolioDetailsComponent,
+    PortfolioListComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +48,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatButtonModule,
     MatAutocompleteModule,
     MatOptionModule,
+    MatListModule,
     ReactiveFormsModule,
     FormsModule,
     ChartsModule

@@ -14,22 +14,8 @@ export class PortfolioDetailsComponent implements OnInit {
   optimalCanvers = 'optimalcanvas';
   optimalChart = [];
   optimalPortfolioWeight: number[] = [];
-  optimalChartReady: boolean;
-
-  portfolioChart = [];
-
-  investmentList: [Product];
-  sharesList: [Product];
-  bondList: [Product];
-  moneyMarketList: [Product];
-  commodityList: [Product];
 
   constructor(private dataService: DataService) {
-    this.investmentList = [null];
-    this.sharesList = [null];
-    this.bondList = [null];
-    this.moneyMarketList = [null];
-    this.commodityList = [null];
     this.initOptimalChart();
   }
 
@@ -56,18 +42,6 @@ export class PortfolioDetailsComponent implements OnInit {
       }
     }));
     this.initOptimalChart();
-    // this.updatePortfolioChart();
-  }
-
-
-  private updatePortfolioChart() {
-    // this.portfolioChartData = [[
-    //   this.countLength(this.investmentList),
-    //   this.countLength(this.investmentList),
-    //   this.countLength(this.investmentList),
-    //   this.countLength(this.investmentList),
-    //   this.countLength(this.investmentList)
-    // ]];
   }
 
   private countLength(array: [Product]): number {
@@ -92,21 +66,5 @@ export class PortfolioDetailsComponent implements OnInit {
         this.optimalPortfolioWeight.push(25, 50, 20, 0, 5);
         return;
     }
-  }
-
-  public addProductToPortfolio(product: Product) {
-    switch (product.productType) {
-      case 'Investment-Themen':
-        return this.investmentList.push(product);
-      case 'Aktienfonds':
-        return this.sharesList.push(product);
-      case 'Anleihenfonds':
-        return this.bondList.push(product);
-      case 'Geldmarktfonds':
-        return this.moneyMarketList.push(product);
-      case 'Rohstoffe':
-        return this.commodityList.push(product);
-    }
-    // this.updatePortfolioChart();
   }
 }
