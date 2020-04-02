@@ -34,8 +34,17 @@
     <mat-form-field>
       <mat-label>Laufzeit in Jahren</mat-label>
       <br>
-      <input matInput type="text" formControlName="duration" placeholder="3" (change)="changeDuration()"><br>
+      <input matInput type="text" formControlName="duration" placeholder="3" (change)="changeDuration()">
     </mat-form-field>
-    <button mat-button (click)="submitRiskProfile()">Weiter</button>
+    <br>
+    <br>
+    <mat-form-field>
+      <mat-label>Investitionsbetrag</mat-label>
+      <br>
+      <input matInput type="text" formControlName="investmentValue" placeholder="1000"
+             (change)="changeInvestmentValue()">
+    </mat-form-field>
+    <br>
+    <button mat-button (click)="submitRiskProfile()">Portfolio zusammenstellen</button>
   </form>
 </div>

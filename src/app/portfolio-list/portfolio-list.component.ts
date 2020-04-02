@@ -47,7 +47,12 @@ export class PortfolioListComponent implements OnInit {
         this.sharesListVisible = true;
         this.moneyMarketListVisible = true;
         return;
-      case PortfolioWeighting.ADVISOR_50 || PortfolioWeighting.ADVISOR_75:
+      case PortfolioWeighting.ADVISOR_50:
+        this.investmentListVisible = true;
+        this.sharesListVisible = true;
+        this.moneyMarketListVisible = false;
+        return;
+      case PortfolioWeighting.ADVISOR_75:
         this.investmentListVisible = true;
         this.sharesListVisible = true;
         this.moneyMarketListVisible = false;
@@ -69,4 +74,43 @@ export class PortfolioListComponent implements OnInit {
         return this.commodityList.push(product);
     }
   }
+
+  public getProductWeightingQuotesFromDataService(arrayNumber: number): number {
+    return this.dataService.productWeightingQuotes[arrayNumber];
+  }
+
+  public getProductValue(numberOfProducts: number, quote: number): number {
+    return this.dataService.investmentValue / quote / numberOfProducts;
+  }
+
+  public deleteProduct(arrayNumber: number, isin: string): void {
+    switch (arrayNumber) {
+      case 0:
+        this.investmentList = this.investmentList.filter(product => !product.isin.match(isin));
+        return;
+      case 1:
+        this.sharesList = this.sharesList.filter(product => !product.isin.match(isin));
+        return;
+      case 2:
+        this.bondList = this.bondList.filter(product => !product.isin.match(isin));
+        return;
+      case 3:
+        this.moneyMarketList = this.moneyMarketList.filter(product => !product.isin.match(isin));
+        return;
+      case 4:
+        this.commodityList = this.commodityList.filter(product => !product.isin.match(isin));
+        return;
+    }
+  }
 }
+
+// this.optimalPortfolioWeight.push(0, 0, 80, 10, 10);
+// return;
+// case PortfolioWeighting.ADVISOR_25:
+// this.optimalPortfolioWeight.push(10, 15, 60, 5, 10);
+// return;
+// case PortfolioWeighting.ADVISOR_50:
+// this.optimalPortfolioWeight.push(20, 30, 40, 0, 10);
+// return;
+// case PortfolioWeighting.ADVISOR_75:
+// this.optimalPortfolioWeight.push(25, 50, 20, 0, 5);

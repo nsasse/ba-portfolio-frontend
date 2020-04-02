@@ -5,7 +5,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {RestService} from '../../services/rest.service';
 import {RiskProfile} from '../../models/risk-profile';
 import {PortfolioWeighting} from '../../models/portfolioweighting.enum';
-import {DataService} from "../../services/data.service";
+import {DataService} from '../../services/data.service';
 
 @Component({
   selector: 'app-risk-analyse',
@@ -15,7 +15,8 @@ import {DataService} from "../../services/data.service";
 export class RiskAnalyseComponent implements OnInit {
 
   form = new FormGroup({
-    duration: new FormControl('', [Validators.required, Validators.min(1)])
+    duration: new FormControl('', [Validators.required, Validators.min(1)]),
+    investmentValue: new FormControl('', [Validators.required, Validators.min(1)])
   });
   public expectedYield: ExpectedYield;
   public riskTolerance: RiskTolerance;
@@ -67,6 +68,10 @@ export class RiskAnalyseComponent implements OnInit {
 
   public changeDuration() {
     this.duration = this.form.value.duration;
+  }
+
+  public changeInvestmentValue() {
+    this.dataService.investmentValue = this.form.value.investmentValue;
   }
 
   // TODO
