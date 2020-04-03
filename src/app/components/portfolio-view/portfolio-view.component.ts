@@ -38,6 +38,8 @@ export class PortfolioViewComponent implements OnInit {
   }
 
   public addProductToPortfolio() {
-    this.portfolioListComponent.addProductToPortfolio(this.productForView);
+    this.portfolioListComponent.addProductToPortfolio(new Product(this.productForView.id, this.productForView.isin,
+      this.productForView.name, this.productForView.productType, this.productForView.region,
+      this.productForView.indexLevel, this.productForView.performanceTotal, this.productForView.performanceThisYear));
   }
 }

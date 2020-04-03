@@ -44,25 +44,4 @@ export class ProductSearchComponent implements OnInit {
         this.productNames = data;
       });
   }
-
-  // TEST
-  // public getProducts() {
-  //
-  //   this.restService.getProducts()
-  //     .subscribe(data => {
-  //       for (const d of (data as any)) {
-  //         this.products.push({
-  //           id: d.id,
-  //           isin: d.isin,
-  //           name: d.name,
-  //           productType: d.productType,
-  //           region: d.region,
-  //           indexLevel: d.indexLevel,
-  //           performanceTotal: d.performanceTotal,
-  //           performanceThisYear: d.performanceThisYear
-  //         });
-  //       }
-  //       console.log(this.products);
-  //     });
-  // }
 }
