@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Product} from '../models/product.model';
-import {PortfolioWeighting} from '../models/portfolioweighting.enum';
-import {DataService} from '../services/data.service';
+import {Product} from '../../models/product.model';
+import {PortfolioWeighting} from '../../models/portfolioweighting.enum';
+import {DataService} from '../../services/data.service';
 
 @Component({
   selector: 'app-portfolio-list',

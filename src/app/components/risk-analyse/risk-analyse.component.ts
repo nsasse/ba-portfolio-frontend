@@ -3,7 +3,7 @@ import {ExpectedYield} from '../../models/expected-yield.enum';
 import {RiskTolerance} from '../../models/risk-tolerance.enum';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {RestService} from '../../services/rest.service';
-import {RiskProfile} from '../../models/risk-profile';
+import {RiskProfile} from '../../models/risk-profile.model';
 import {PortfolioWeighting} from '../../models/portfolioweighting.enum';
 import {DataService} from '../../services/data.service';
 

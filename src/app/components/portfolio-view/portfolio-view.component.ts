@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {RestService} from '../../services/rest.service';
 import {Product} from '../../models/product.model';
-import {PortfolioListComponent} from '../../portfolio-list/portfolio-list.component';
+import {PortfolioListComponent} from '../portfolio-list/portfolio-list.component';
 
 @Component({
   selector: 'app-portfolio-view',

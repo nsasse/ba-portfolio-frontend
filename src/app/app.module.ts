@@ -8,7 +8,7 @@ import {ProductSearchComponent} from './components/product-search/product-search
 import {PortfolioViewComponent} from './components/portfolio-view/portfolio-view.component';
 import {RiskAnalyseComponent} from './components/risk-analyse/risk-analyse.component';
 import {PortfolioDetailsComponent} from './components/portfolio-details/portfolio-details.component';
-import {PortfolioListComponent} from './portfolio-list/portfolio-list.component';
+import {PortfolioListComponent} from './components/portfolio-list/portfolio-list.component';
 
 import {DataService} from './services/data.service';
 

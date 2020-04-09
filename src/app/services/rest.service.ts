@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {RiskProfile} from '../models/risk-profile';
+import {RiskProfile} from '../models/risk-profile.model';
 import {Observable} from 'rxjs';
 
 @Injectable({
@@ -15,10 +15,6 @@ export class RestService {
 
   public getAllProductsForSearch(): Observable<any> {
     return this.http.get('http://localhost:8082/product/all/string');
-  }
-
-  public getProducts(): Observable<any> {
-    return this.http.get('http://localhost:8082/product/all');
   }
 
   public sendRiskProfile(riskProfile: RiskProfile): Observable<any> {
