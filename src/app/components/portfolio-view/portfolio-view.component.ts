@@ -21,7 +21,6 @@ export class PortfolioViewComponent implements OnInit {
   }
 
   public getProductByName(productName: string): void {
-    console.log(productName);
     this.restService.getProductByName(productName)
       .subscribe(data => {
         this.productForView.id = data.id;
