@@ -25,6 +25,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatOptionModule} from '@angular/material/core';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatListModule} from '@angular/material/list';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import {MatListModule} from '@angular/material/list';
     MatListModule,
     ReactiveFormsModule,
     FormsModule,
-    ChartsModule
+    ChartsModule,
+    MatGridListModule
   ],
   providers: [
     DataService
