@@ -11,7 +11,6 @@ import {PortfolioListComponent} from '../portfolio-list/portfolio-list.component
 export class PortfolioViewComponent implements OnInit {
 
   @ViewChild(PortfolioListComponent) portfolioListComponent: PortfolioListComponent;
-
   productForView: Product;
 
   constructor(private readonly restService: RestService) {
@@ -21,7 +20,7 @@ export class PortfolioViewComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public getProductByName(productName: string) {
+  public getProductByName(productName: string): void {
     console.log(productName);
     this.restService.getProductByName(productName)
       .subscribe(data => {
@@ -34,10 +33,9 @@ export class PortfolioViewComponent implements OnInit {
         this.productForView.performanceTotal = data.performanceTotal;
         this.productForView.performanceThisYear = data.performanceThisYear;
       });
-    console.log(this.productForView);
   }
 
-  public addProductToPortfolio() {
+  public addProductToPortfolio(): void {
     this.portfolioListComponent.addProductToPortfolio(new Product(this.productForView.id, this.productForView.isin,
       this.productForView.name, this.productForView.productType, this.productForView.region,
       this.productForView.indexLevel, this.productForView.performanceTotal, this.productForView.performanceThisYear));
