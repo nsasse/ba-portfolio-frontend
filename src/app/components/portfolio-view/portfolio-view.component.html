@@ -1,15 +1,16 @@
 <div class="portfolio-view">
-  <mat-grid-list cols="2" style="width: 800px" rowHeight="200px">
-    <mat-grid-tile [colspan]="1">
+  <mat-grid-list cols="10" style="width: 1200px" rowHeight="100px">
+    <mat-grid-tile [colspan]="4" [rowspan]="2">
       <app-portfolio-details></app-portfolio-details>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="1">
+    <mat-grid-tile [colspan]="3" [rowspan]="1">
       <app-product-search (productSelected)="getProductByName($event)"></app-product-search>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="1">
-      <app-portfolio-list></app-portfolio-list>
+    <!-- Integration of Vertical 3 -->
+    <mat-grid-tile [colspan]="3" [rowspan]="5">
+      <iframe src="http://localhost:8081/index.xhtml"></iframe>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="1">
+    <mat-grid-tile [colspan]="3" [rowspan]="2">
       <div class="productView">
         <mat-label>Name: {{productForView.name}}</mat-label>
         <br>
@@ -28,6 +29,15 @@
         <br>
         <button mat-button (click)="addProductToPortfolio()">Produkt hinzufügen</button>
       </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="4" [rowspan]="4">
+      <app-portfolio-list></app-portfolio-list>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="3" [rowspan]="1"></mat-grid-tile>
+    <!-- Integration of Vertical 2 -->
+    <mat-grid-tile [colspan]="3" [rowspan]="1">
+      <!-- TODO INTEGRATION -->
+      <button>Vertical 2</button>
     </mat-grid-tile>
   </mat-grid-list>
 </div>
