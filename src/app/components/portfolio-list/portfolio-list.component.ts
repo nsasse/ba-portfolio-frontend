@@ -76,11 +76,13 @@ export class PortfolioListComponent implements OnInit {
   }
 
   public getProductWeightingQuotesFromDataService(arrayNumber: number): number {
+    console.log('Array:' + arrayNumber);
+    console.log(this.dataService.productWeightingQuotes[arrayNumber]);
     return this.dataService.productWeightingQuotes[arrayNumber];
   }
 
   public getProductValue(numberOfProducts: number, quote: number): number {
-    return this.dataService.investmentValue / quote / numberOfProducts;
+    return Math.round(((this.dataService.investmentValue * (quote / 100) / numberOfProducts) + Number.EPSILON) * 100) / 100;
   }
 
   public deleteProduct(arrayNumber: number, isin: string): void {
@@ -103,14 +105,3 @@ export class PortfolioListComponent implements OnInit {
     }
   }
 }
-
-// this.optimalPortfolioWeight.push(0, 0, 80, 10, 10);
-// return;
-// case PortfolioWeighting.ADVISOR_25:
-// this.optimalPortfolioWeight.push(10, 15, 60, 5, 10);
-// return;
-// case PortfolioWeighting.ADVISOR_50:
-// this.optimalPortfolioWeight.push(20, 30, 40, 0, 10);
-// return;
-// case PortfolioWeighting.ADVISOR_75:
-// this.optimalPortfolioWeight.push(25, 50, 20, 0, 5);
