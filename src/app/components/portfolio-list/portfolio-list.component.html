@@ -7,12 +7,11 @@
       <mat-list-item *ngFor="let productInvestmentList of investmentList">
         <span><h3> {{productInvestmentList.name}} </h3></span>
         <span><p> {{productInvestmentList.region}} </p></span>
-        <p> {{getProductValue(investmentList.length, getProductWeightingQuotesFromDataService(0))}} €</p>
-        <p class="demo-2">
-          <button mat-button color="warn" (click)="deleteProduct(0, productInvestmentList.isin)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </p>
+        <p style="width: 70px;"> {{getProductValue(investmentList.length, getProductWeightingQuotesFromDataService(0))}}
+          €</p>
+        <button mat-button color="warn" (click)="deleteProduct(0, productInvestmentList.isin)">
+          <mat-icon>delete</mat-icon>
+        </button>
       </mat-list-item>
     </mat-list>
     <mat-list id="shares-list" *ngIf="sharesListVisible">
@@ -20,12 +19,11 @@
       <mat-list-item *ngFor="let productShares of sharesList">
         <span><h3> {{productShares.name}} </h3></span>
         <span><p> {{productShares.region}} </p></span>
-        <p> {{getProductValue(sharesList.length, getProductWeightingQuotesFromDataService(1))}} €</p>
-        <p class="demo-2">
-          <button mat-button color="warn" (click)="deleteProduct(1, productShares.isin)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </p>
+        <p style="width: 70px;"> {{getProductValue(sharesList.length, getProductWeightingQuotesFromDataService(1))}}
+          €</p>
+        <button mat-button color="warn" (click)="deleteProduct(1, productShares.isin)">
+          <mat-icon>delete</mat-icon>
+        </button>
       </mat-list-item>
     </mat-list>
     <mat-list id="bond-list" *ngIf="bondListVisible">
@@ -33,12 +31,10 @@
       <mat-list-item *ngFor="let productBonds of bondList">
         <span><h3> {{productBonds.name}} </h3></span>
         <span><p> {{productBonds.region}} </p></span>
-        <p> {{getProductValue(bondList.length, getProductWeightingQuotesFromDataService(2))}} €</p>
-        <p class="demo-2">
-          <button mat-button color="warn" (click)="deleteProduct(2, productBonds.isin)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </p>
+        <p style="width: 70px;"> {{getProductValue(bondList.length, getProductWeightingQuotesFromDataService(2))}} €</p>
+        <button mat-button color="warn" (click)="deleteProduct(2, productBonds.isin)">
+          <mat-icon>delete</mat-icon>
+        </button>
       </mat-list-item>
     </mat-list>
     <mat-list id="money-market-list" *ngIf="moneyMarketListVisible">
@@ -46,12 +42,12 @@
       <mat-list-item *ngFor="let productMoneyMarket of moneyMarketList">
         <span><h3> {{productMoneyMarket.name}} </h3></span>
         <span><p> {{productMoneyMarket.region}} </p></span>
-        <p> {{getProductValue(moneyMarketList.length, getProductWeightingQuotesFromDataService(3))}} €</p>
-        <p class="demo-2">
-          <button mat-button color="warn" (click)="deleteProduct(3, productMoneyMarket.isin)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </p>
+        <p
+          style="width: 70px;"> {{getProductValue(moneyMarketList.length, getProductWeightingQuotesFromDataService(3))}}
+          €</p>
+        <button mat-button color="warn" (click)="deleteProduct(3, productMoneyMarket.isin)">
+          <mat-icon>delete</mat-icon>
+        </button>
       </mat-list-item>
     </mat-list>
     <mat-list id="commodity-list" *ngIf="commodityListVisible">
@@ -59,12 +55,11 @@
       <mat-list-item *ngFor="let productCommodity of commodityList">
         <span><h3> {{productCommodity.name}} </h3></span>
         <span><p> {{productCommodity.region}} </p></span>
-        <p> {{getProductValue(commodityList.length, getProductWeightingQuotesFromDataService(4))}} €</p>
-        <p class="demo-2">
-          <button mat-button color="warn" (click)="deleteProduct(4, productCommodity.isin)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </p>
+        <p style="width: 70px;"> {{getProductValue(commodityList.length, getProductWeightingQuotesFromDataService(4))}}
+          €</p>
+        <button mat-button color="warn" (click)="deleteProduct(4, productCommodity.isin)">
+          <mat-icon>delete</mat-icon>
+        </button>
       </mat-list-item>
     </mat-list>
   </div>
