@@ -12,6 +12,7 @@ export class AppComponent {
 
   viewRiskAnalyse: boolean;
   viewPortfolioView: boolean;
+  viewUserDataView: boolean;
 
   constructor() {
     this.viewRiskAnalyse = true;
@@ -22,5 +23,10 @@ export class AppComponent {
     this.portfolioWeighting = portfolioWeightingParam;
     this.viewRiskAnalyse = false;
     this.viewPortfolioView = true;
+  }
+
+  public portfolioFinished(isFinished: boolean) {
+    this.viewPortfolioView = false;
+    this.viewUserDataView = isFinished;
   }
 }

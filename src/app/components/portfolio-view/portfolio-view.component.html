@@ -34,10 +34,8 @@
       <app-portfolio-list></app-portfolio-list>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="3" [rowspan]="1"></mat-grid-tile>
-    <!-- Integration of Vertical 2 -->
-    <mat-grid-tile [colspan]="3" [rowspan]="1">
-      <!-- TODO INTEGRATION -->
-      <button>Bestellen</button>
+    <mat-grid-tile [colspan]="3" [rowspan]="1" (click)="finishPortfolio()">
+      <buy-button></buy-button><!-- Integration of Vertical 2 -->
     </mat-grid-tile>
   </mat-grid-list>
 </div>

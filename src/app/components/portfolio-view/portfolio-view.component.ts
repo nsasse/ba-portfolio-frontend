@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {RestService} from '../../services/rest.service';
 import {Product} from '../../models/product.model';
 import {PortfolioListComponent} from '../portfolio-list/portfolio-list.component';
@@ -12,6 +12,8 @@ export class PortfolioViewComponent implements OnInit {
 
   @ViewChild(PortfolioListComponent) portfolioListComponent: PortfolioListComponent;
   productForView: Product;
+
+  @Output() portfolioIsFinished = new EventEmitter<boolean>();
 
   constructor(private readonly restService: RestService) {
     this.productForView = new Product(null, '', '', '', '', 0, 0, 0);
@@ -38,5 +40,9 @@ export class PortfolioViewComponent implements OnInit {
     this.portfolioListComponent.addProductToPortfolio(new Product(this.productForView.id, this.productForView.isin,
       this.productForView.name, this.productForView.productType, this.productForView.region,
       this.productForView.indexLevel, this.productForView.performanceTotal, this.productForView.performanceThisYear));
+  }
+
+  public finishPortfolio() {
+    this.portfolioIsFinished.emit(true);
   }
 }
