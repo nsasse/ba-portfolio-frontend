@@ -6,9 +6,8 @@
     <mat-grid-tile [colspan]="3" [rowspan]="1">
       <app-product-search (productSelected)="getProductByName($event)"></app-product-search>
     </mat-grid-tile>
-    <!-- Integration of Vertical 3 -->
     <mat-grid-tile [colspan]="3" [rowspan]="7">
-      <iframe src="http://localhost:8083/optimizer_war_exploded/index.xhtml"></iframe>
+      <iframe src="http://localhost:8083/optimizer_war_exploded/index.xhtml"></iframe><!-- Integration of Vertical 3 -->
     </mat-grid-tile>
     <mat-grid-tile [colspan]="3" [rowspan]="2">
       <div class="productView">
@@ -33,7 +32,7 @@
     <mat-grid-tile [colspan]="4" [rowspan]="5">
       <app-portfolio-list></app-portfolio-list>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="3" [rowspan]="1"></mat-grid-tile>
+    <mat-grid-tile [colspan]="3" [rowspan]="2"></mat-grid-tile>
     <mat-grid-tile [colspan]="3" [rowspan]="1" (click)="finishPortfolio()">
       <buy-button></buy-button><!-- Integration of Vertical 2 -->
     </mat-grid-tile>
