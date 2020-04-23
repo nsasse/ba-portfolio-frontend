@@ -21,7 +21,7 @@ export class RiskAnalyseComponent implements OnInit {
   public expectedYield: ExpectedYield;
   public riskTolerance: RiskTolerance;
   public duration: number;
-  public portfolioWeightingData: string;
+  public portfolioWeighting: PortfolioWeighting;
 
   @Output() riskProfileUploaded = new EventEmitter<PortfolioWeighting>();
 
@@ -74,19 +74,15 @@ export class RiskAnalyseComponent implements OnInit {
     this.dataService.investmentValue = this.form.value.investmentValue;
   }
 
-  // TODO
   public submitRiskProfile() {
     const riskProfile: RiskProfile = new RiskProfile(this.riskTolerance, this.expectedYield, this.duration);
 
     this.restService.sendRiskProfile(riskProfile).subscribe(
       data => {
         console.log('Data: ' + data);
-        this.portfolioWeightingData = data;
+        this.dataService.portfolioWeighting = PortfolioWeighting[data.toString()];
+        this.riskProfileUploaded.emit(PortfolioWeighting[data.toString()]);
+        console.log(this.dataService.portfolioWeighting);
       });
-    // if (this.portfolioWeightingData.match(PortfolioWeighting.ADVISOR_75)) {
-    this.dataService.portfolioWeighting = PortfolioWeighting.ADVISOR_25;
-    // }
-    console.log('Object: ' + this.dataService.portfolioWeighting);
-    this.riskProfileUploaded.emit(this.dataService.portfolioWeighting);
   }
 }
