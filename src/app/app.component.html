@@ -43,7 +43,7 @@
 
   <!--APP RISK ANALYSE-->
   <div class="main-container">
-    <app-risk-analyse (riskProfileUploaded)="riskProfileFinished($event)" *ngIf="viewRiskAnalyse"></app-risk-analyse>
+    <app-risk-analyse (riskProfileUploaded)="riskProfileFinished()" *ngIf="viewRiskAnalyse"></app-risk-analyse>
 
     <app-portfolio-view (portfolioIsFinished)="portfolioFinished($event)"
                         *ngIf="viewPortfolioView"></app-portfolio-view>

@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {PortfolioWeighting} from './models/portfolioweighting.enum';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +7,6 @@ import {PortfolioWeighting} from './models/portfolioweighting.enum';
 })
 export class AppComponent {
   title = 'main-frontend';
-  portfolioWeighting: PortfolioWeighting = null;
 
   viewRiskAnalyse: boolean;
   viewPortfolioView: boolean;
@@ -19,8 +17,7 @@ export class AppComponent {
     this.viewPortfolioView = false;
   }
 
-  public riskProfileFinished(portfolioWeightingParam: PortfolioWeighting) {
-    this.portfolioWeighting = portfolioWeightingParam;
+  public riskProfileFinished() {
     this.viewRiskAnalyse = false;
     this.viewPortfolioView = true;
   }

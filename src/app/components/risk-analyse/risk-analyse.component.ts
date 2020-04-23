@@ -23,7 +23,7 @@ export class RiskAnalyseComponent implements OnInit {
   public duration: number;
   public portfolioWeighting: PortfolioWeighting;
 
-  @Output() riskProfileUploaded = new EventEmitter<PortfolioWeighting>();
+  @Output() riskProfileUploaded = new EventEmitter<null>();
 
   constructor(
     private readonly fb: FormBuilder,
@@ -81,8 +81,7 @@ export class RiskAnalyseComponent implements OnInit {
       data => {
         console.log('Data: ' + data);
         this.dataService.portfolioWeighting = PortfolioWeighting[data.toString()];
-        this.riskProfileUploaded.emit(PortfolioWeighting[data.toString()]);
-        console.log(this.dataService.portfolioWeighting);
+        this.riskProfileUploaded.emit();
       });
   }
 }
