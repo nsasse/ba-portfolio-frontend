@@ -7,7 +7,8 @@
       <app-product-search (productSelected)="getProductByName($event)"></app-product-search>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="3" [rowspan]="7">
-      <iframe src="http://localhost:8083/optimizer_war_exploded/index.xhtml"></iframe><!-- Integration of Vertical 3 -->
+      <iframe src="http://localhost:8083/optimizer_war_exploded/index.xhtml" (load)="checkIframe()"></iframe>
+      <!-- Integration of Vertical 3 -->
     </mat-grid-tile>
     <mat-grid-tile [colspan]="3" [rowspan]="2">
       <div class="productView">

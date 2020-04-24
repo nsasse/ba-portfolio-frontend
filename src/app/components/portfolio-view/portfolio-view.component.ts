@@ -42,7 +42,18 @@ export class PortfolioViewComponent implements OnInit {
       this.productForView.indexLevel, this.productForView.performanceTotal, this.productForView.performanceThisYear));
   }
 
-  public finishPortfolio() {
+  public finishPortfolio(): void {
     this.portfolioIsFinished.emit(true);
+  }
+
+  // TODO: Wird nicht aufgerufen, wenn nicht verfügbar!
+  public checkIframe(): void {
+    console.log('iframe check started')
+    try {
+      const check = window.self !== window.top;
+      console.log('iframe: ' + check);
+    } catch (e) {
+      console.log('iframe: ' + true);
+    }
   }
 }
