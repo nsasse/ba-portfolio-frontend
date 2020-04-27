@@ -18,19 +18,16 @@ export class PortfolioViewComponent implements AfterViewInit {
 
   vertical2Error: boolean;
   vertical2Form = new FormGroup({
-    mail: new FormControl('', [Validators.required, Validators.min(1)]),
+    mail: new FormControl('', [Validators.required, Validators.email]),
   });
-  vertical3Error: boolean;
 
   constructor(private readonly restService: RestService) {
     this.productForView = new Product(null, '', '', '', '', 0, 0, 0);
     this.vertical2Error = false;
-    this.vertical3Error = false;
   }
 
   ngAfterViewInit(): void {
     this.vertical2Error = document.getElementById('buy-button') == null;
-    console.log('V2 Error: ' + this.vertical2Error);
   }
 
   public getProductByName(productName: string): void {
