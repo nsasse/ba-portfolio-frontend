@@ -7,7 +7,7 @@
       <app-product-search (productSelected)="getProductByName($event)"></app-product-search>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="3" [rowspan]="7">
-      <iframe src="http://localhost:8083/optimizer_war_exploded/index.xhtml" (load)="checkIframe()"></iframe>
+      <iframe id="vertical-3" src="http://localhost:8083/optimizer_war_exploded/index.xhtml"></iframe>
       <!-- Integration of Vertical 3 -->
     </mat-grid-tile>
     <mat-grid-tile [colspan]="3" [rowspan]="2">
@@ -33,9 +33,23 @@
     <mat-grid-tile [colspan]="4" [rowspan]="5">
       <app-portfolio-list></app-portfolio-list>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="3" [rowspan]="2"></mat-grid-tile>
-    <mat-grid-tile [colspan]="3" [rowspan]="1" (click)="finishPortfolio()">
+    <mat-grid-tile [colspan]="3" [rowspan]="1"></mat-grid-tile>
+    <mat-grid-tile [colspan]="3" [rowspan]="2" (click)="finishPortfolio()" *ngIf="!vertical2Error">
       <buy-button></buy-button><!-- Integration of Vertical 2 -->
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="3" [rowspan]="2" *ngIf="vertical2Error">
+      <form [formGroup]="vertical2Form">
+        <mat-lable>Bestellung zur Zeit nicht möglich. Wir informieren Sie, sobald die Bestellung wieder verfügbar ist.
+        </mat-lable>
+        <br>
+        <mat-form-field>
+          <mat-label>E-Mail</mat-label>
+          <br>
+          <input matInput type="text" formControlName="mail"/><br>
+        </mat-form-field>
+        <br>
+        <button mat-button (click)="sendInterest()">Interesse mitteilen</button>
+      </form>
     </mat-grid-tile>
   </mat-grid-list>
 </div>

@@ -1,25 +1,36 @@
-import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Output, ViewChild} from '@angular/core';
 import {RestService} from '../../services/rest.service';
 import {Product} from '../../models/product.model';
 import {PortfolioListComponent} from '../portfolio-list/portfolio-list.component';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-portfolio-view',
   templateUrl: './portfolio-view.component.html',
   styleUrls: ['./portfolio-view.component.scss'],
 })
-export class PortfolioViewComponent implements OnInit {
+export class PortfolioViewComponent implements AfterViewInit {
 
   @ViewChild(PortfolioListComponent) portfolioListComponent: PortfolioListComponent;
   productForView: Product;
 
   @Output() portfolioIsFinished = new EventEmitter<boolean>();
 
+  vertical2Error: boolean;
+  vertical2Form = new FormGroup({
+    mail: new FormControl('', [Validators.required, Validators.min(1)]),
+  });
+  vertical3Error: boolean;
+
   constructor(private readonly restService: RestService) {
     this.productForView = new Product(null, '', '', '', '', 0, 0, 0);
+    this.vertical2Error = false;
+    this.vertical3Error = false;
   }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+    this.vertical2Error = document.getElementById('buy-button') == null;
+    console.log('V2 Error: ' + this.vertical2Error);
   }
 
   public getProductByName(productName: string): void {
@@ -43,17 +54,17 @@ export class PortfolioViewComponent implements OnInit {
   }
 
   public finishPortfolio(): void {
+    this.restService.sendPortfolioProducts(this.portfolioListComponent.getAllProducts())
+      .subscribe(data => {
+        console.log(this.portfolioListComponent.getAllProducts());
+      });
     this.portfolioIsFinished.emit(true);
   }
 
-  // TODO: Wird nicht aufgerufen, wenn nicht verfügbar!
-  public checkIframe(): void {
-    console.log('iframe check started')
-    try {
-      const check = window.self !== window.top;
-      console.log('iframe: ' + check);
-    } catch (e) {
-      console.log('iframe: ' + true);
-    }
+  public sendInterest(): void {
+    this.restService.sendInterest(this.vertical2Form.value.mail)
+      .subscribe(data => {
+        console.log(this.vertical2Form.value.mail);
+      });
   }
 }

@@ -104,4 +104,17 @@ export class PortfolioListComponent implements OnInit {
         return;
     }
   }
+
+  public getAllProducts(): string[] {
+    let products: Product[] = [];
+    let isins: string[] = [];
+    products = products.concat(this.investmentList);
+    products = products.concat(this.sharesList);
+    products = products.concat(this.bondList);
+    products = products.concat(this.moneyMarketList);
+    products = products.concat(this.commodityList);
+
+    isins = products.map(filterProducts => filterProducts.isin);
+    return isins;
+  }
 }
