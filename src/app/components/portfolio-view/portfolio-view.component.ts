@@ -58,6 +58,27 @@ export class PortfolioViewComponent implements AfterViewInit {
     this.portfolioIsFinished.emit(true);
   }
 
+  public checkProductToPortfolio(): void {
+    console.log('Optimizer clicked')
+    const productToPortfolio: Product = new Product(null, null, null, null, null, null, null, null);
+    setTimeout(() => {
+      this.restService.checkProductToPortfolio().subscribe(data => {
+        console.log('DATA: ' + data);
+        if (data != null) {
+          productToPortfolio.id = data.id;
+          productToPortfolio.isin = data.isin;
+          productToPortfolio.name = data.name;
+          productToPortfolio.productType = data.productType.type;
+          productToPortfolio.region = data.region.name;
+          productToPortfolio.indexLevel = data.indexLevel;
+          productToPortfolio.performanceTotal = data.performanceTotal;
+          productToPortfolio.performanceThisYear = data.performanceThisYear;
+          this.portfolioListComponent.addProductToPortfolio(productToPortfolio);
+        }
+      });
+    }, 5000);
+  }
+
   public sendInterest(): void {
     this.restService.sendInterest(this.vertical2Form.value.mail)
       .subscribe(data => {

@@ -35,8 +35,7 @@ export class RestService {
     return this.http.post<any>('http://localhost:8082/portfolio/interest', mail);
   }
 
-  // TODO
-  public checkVertical3Availalbe(): Observable<any> {
-    return null;
+  public checkProductToPortfolio(): Observable<any> {
+    return this.http.post<any>('http://localhost:8082/portfolio/check-product', null);
   }
 }
