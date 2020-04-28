@@ -35,7 +35,21 @@ export class RestService {
     return this.http.post<any>('http://localhost:8082/portfolio/interest', mail);
   }
 
+  public checkOptimizerConnection(): Observable<any> {
+    return this.http.get<any>('http://localhost:8083/optimizer_war_exploded/index.xhtml');
+  }
+
   public checkProductToPortfolio(): Observable<any> {
     return this.http.post<any>('http://localhost:8082/portfolio/check-product', null);
+  }
+
+  private handleError(error: Response | any) {
+    let errMsg: string;
+    if (error instanceof Response) {
+      const err = error || '';
+      return error.status;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
   }
 }

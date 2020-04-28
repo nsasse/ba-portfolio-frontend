@@ -21,9 +21,14 @@ export class PortfolioViewComponent implements AfterViewInit {
     mail: new FormControl('', [Validators.required, Validators.email]),
   });
 
+  vertical3Error: boolean;
+  vertical3Status: number;
+
   constructor(private readonly restService: RestService) {
     this.productForView = new Product(null, '', '', '', '', 0, 0, 0);
     this.vertical2Error = false;
+    this.vertical3Error = false;
+    this.checkOptimizerConnection();
   }
 
   ngAfterViewInit(): void {
@@ -58,12 +63,25 @@ export class PortfolioViewComponent implements AfterViewInit {
     this.portfolioIsFinished.emit(true);
   }
 
+  public sendInterest(): void {
+    this.restService.sendInterest(this.vertical2Form.value.mail)
+      .subscribe(data => {
+      });
+  }
+
+  public checkOptimizerConnection(): void {
+    this.restService.checkOptimizerConnection().subscribe(data => {
+    }, error => {
+      if (error.status !== 200) {
+        this.vertical3Error = true;
+      }
+    });
+  }
+
   public checkProductToPortfolio(): void {
-    console.log('Optimizer clicked')
     const productToPortfolio: Product = new Product(null, null, null, null, null, null, null, null);
     setTimeout(() => {
       this.restService.checkProductToPortfolio().subscribe(data => {
-        console.log('DATA: ' + data);
         if (data != null) {
           productToPortfolio.id = data.id;
           productToPortfolio.isin = data.isin;
@@ -77,12 +95,5 @@ export class PortfolioViewComponent implements AfterViewInit {
         }
       });
     }, 5000);
-  }
-
-  public sendInterest(): void {
-    this.restService.sendInterest(this.vertical2Form.value.mail)
-      .subscribe(data => {
-        console.log(this.vertical2Form.value.mail);
-      });
   }
 }

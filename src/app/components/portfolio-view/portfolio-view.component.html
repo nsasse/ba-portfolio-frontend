@@ -6,10 +6,13 @@
     <mat-grid-tile [colspan]="3" [rowspan]="1">
       <app-product-search (productSelected)="getProductByName($event)"></app-product-search>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="3" [rowspan]="7">
+    <mat-grid-tile [colspan]="3" [rowspan]="7" *ngIf="!vertical3Error">
       <iframe id="vertical-3" src="http://localhost:8083/optimizer_war_exploded/index.xhtml"
               (mouseover)="checkProductToPortfolio()"></iframe>
       <!-- Integration of Vertical 3 -->
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="3" [rowspan]="7" *ngIf="vertical3Error">
+      <mat-label>Keine Produktempfehlungen verfügbar.</mat-label>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="3" [rowspan]="2">
       <div class="productView">
