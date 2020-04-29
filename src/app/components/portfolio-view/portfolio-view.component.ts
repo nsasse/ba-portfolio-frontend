@@ -16,23 +16,23 @@ export class PortfolioViewComponent implements AfterViewInit {
 
   @Output() portfolioIsFinished = new EventEmitter<boolean>();
 
-  vertical2Error: boolean;
-  vertical2Form = new FormGroup({
+  verticalOrderError: boolean;
+  verticalOrderForm = new FormGroup({
     mail: new FormControl('', [Validators.required, Validators.email]),
   });
 
-  vertical3Error: boolean;
+  verticalRecommendationError: boolean;
   vertical3Status: number;
 
   constructor(private readonly restService: RestService) {
     this.productForView = new Product(null, '', '', '', '', 0, 0, 0);
-    this.vertical2Error = false;
-    this.vertical3Error = false;
+    this.verticalOrderError = false;
+    this.verticalRecommendationError = false;
     this.checkOptimizerConnection();
   }
 
   ngAfterViewInit(): void {
-    this.vertical2Error = document.getElementById('buy-button') == null;
+    this.verticalOrderError = document.getElementById('buy-button') == null;
   }
 
   public getProductByName(productName: string): void {
@@ -64,7 +64,7 @@ export class PortfolioViewComponent implements AfterViewInit {
   }
 
   public sendInterest(): void {
-    this.restService.sendInterest(this.vertical2Form.value.mail)
+    this.restService.sendInterest(this.verticalOrderForm.value.mail)
       .subscribe(data => {
       });
   }
@@ -73,7 +73,7 @@ export class PortfolioViewComponent implements AfterViewInit {
     this.restService.checkOptimizerConnection().subscribe(data => {
     }, error => {
       if (error.status !== 200) {
-        this.vertical3Error = true;
+        this.verticalRecommendationError = true;
       }
     });
   }

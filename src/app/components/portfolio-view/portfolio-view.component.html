@@ -6,12 +6,12 @@
     <mat-grid-tile [colspan]="3" [rowspan]="1">
       <app-product-search (productSelected)="getProductByName($event)"></app-product-search>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="3" [rowspan]="7" *ngIf="!vertical3Error">
+    <mat-grid-tile [colspan]="3" [rowspan]="7" *ngIf="!verticalRecommendationError">
       <iframe id="vertical-3" src="http://localhost:8083/optimizer_war_exploded/index.xhtml"
               (mouseover)="checkProductToPortfolio()"></iframe>
-      <!-- Integration of Vertical 3 -->
+      <!-- Integration of vertical recommendation -->
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="3" [rowspan]="7" *ngIf="vertical3Error">
+    <mat-grid-tile [colspan]="3" [rowspan]="7" *ngIf="verticalRecommendationError">
       <mat-label>Keine Produktempfehlungen verfügbar.</mat-label>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="3" [rowspan]="2">
@@ -38,11 +38,11 @@
       <app-portfolio-list></app-portfolio-list>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="3" [rowspan]="1"></mat-grid-tile>
-    <mat-grid-tile [colspan]="3" [rowspan]="2" (click)="finishPortfolio()" *ngIf="!vertical2Error">
-      <buy-button></buy-button><!-- Integration of Vertical 2 -->
+    <mat-grid-tile [colspan]="3" [rowspan]="2" (click)="finishPortfolio()" *ngIf="!verticalOrderError">
+      <buy-button></buy-button><!-- Integration of Vertical Order -->
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="3" [rowspan]="2" *ngIf="vertical2Error">
-      <form [formGroup]="vertical2Form">
+    <mat-grid-tile [colspan]="3" [rowspan]="2" *ngIf="verticalOrderError">
+      <form [formGroup]="verticalOrderForm">
         <mat-lable>Bestellung zur Zeit nicht möglich. Wir informieren Sie, sobald die Bestellung wieder verfügbar ist.
         </mat-lable>
         <br>
