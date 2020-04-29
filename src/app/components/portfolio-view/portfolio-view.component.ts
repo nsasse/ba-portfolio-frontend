@@ -22,7 +22,6 @@ export class PortfolioViewComponent implements AfterViewInit {
   });
 
   verticalRecommendationError: boolean;
-  vertical3Status: number;
 
   constructor(private readonly restService: RestService) {
     this.productForView = new Product(null, '', '', '', '', 0, 0, 0);
