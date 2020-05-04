@@ -15,7 +15,6 @@ export class PortfolioDetailsComponent implements OnInit {
   constructor(private dataService: DataService) {
   }
 
-  // Todo Colors
   ngOnInit(): void {
     this.optimalChart.push(new Chart(this.optimalCanvers, {
       type: 'doughnut',
@@ -40,10 +39,4 @@ export class PortfolioDetailsComponent implements OnInit {
       }
     }));
   }
-
-  // private countLength(array: [Product]): number {
-  //   let counter = 0;
-  //   array.every(data => counter++);
-  //   return counter;
-  // }
 }
